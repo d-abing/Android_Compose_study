@@ -11,6 +11,8 @@ import androidx.compose.material.icons.filled.Settings
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import coil.compose.AsyncImage
+import coil.compose.rememberImagePainter
 import com.example.fastcampuscompose.ui.theme.FastCampusComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -19,24 +21,23 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             FastCampusComposeTheme {
-                ImageEx()
+                CoilEx()
             }
         }
     }
 }
 
 @Composable
-fun ImageEx() {
+fun CoilEx() {
+
     Column {
+        val painter = rememberImagePainter(data = "https://picsum.photos/1500/1500")
         Image(
-            painter = painterResource(id = R.drawable.wall),
-            contentDescription = "엔텔로프 캐년"
+            painter = painter,
+            contentDescription = "랜덤 이미지"
         )
 
-        Image(
-            imageVector = Icons.Filled.Settings,
-            contentDescription = "세팅"
-        )
+        AsyncImage(model = "https://picsum.photos/1500/1500", contentDescription = "랜덤 이미지")
     }
 }
 
@@ -44,6 +45,6 @@ fun ImageEx() {
 @Composable
 fun GreetingPreview() {
     FastCampusComposeTheme {
-        ImageEx()
+        CoilEx()
     }
 }
