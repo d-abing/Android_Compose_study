@@ -8,6 +8,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -42,94 +43,52 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             FastCampusComposeTheme {
-                RowEx()
+                ColumnEx()
             }
         }
     }
 }
 
 @Composable
-fun RowEx() {
-    /*Row(modifier = Modifier.height(40.dp)) {
-        Text(text = "첫 번째!")
-        Text(text = "두 번째!")
-        Text(text = "세 번째!")
+fun ColumnEx() {
+    /*Column(modifier = Modifier.size(100.dp)) {
+        Text(text = "첫 번째")
+        Text(text = "두 번째")
+        Text(text = "세 번째")
     }*/
 
-    /*Row(modifier = Modifier.height(40.dp)) {
-        Text(text = "첫 번째!", modifier = Modifier.align(Alignment.Top))
-        Text(text = "두 번째!", modifier = Modifier.align(Alignment.CenterVertically))
-        Text(text = "세 번째!", modifier = Modifier.align(Alignment.Bottom))
-    }*/
-
-    /*Row(
-        verticalAlignment = Alignment.Bottom,
-        modifier = Modifier.height(40.dp)
+    /*Column(
+        horizontalAlignment = Alignment.End,
+        modifier = Modifier.size(100.dp)
     ) {
-        Text(text = "첫 번째!", modifier = Modifier.align(Alignment.Top))
-        Text(text = "두 번째!")
-        Text(text = "세 번째!")
+        Text(text = "첫 번째")
+        Text(text = "두 번째")
+        Text(text = "세 번째")
     }*/
 
-    /*Row(
-        horizontalArrangement = Arrangement.Center,
-        verticalAlignment = Alignment.Bottom,
-        modifier = Modifier
-            .height(40.dp)
-            .width(200.dp)
+    /*Column(
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.End,
+        modifier = Modifier.size(100.dp)
     ) {
-        Text(text = "첫 번째!", modifier = Modifier.align(Alignment.Top))
-        Text(text = "두 번째!")
-        Text(text = "세 번째!")
+        Text(text = "첫 번째")
+        Text(text = "두 번째")
+        Text(text = "세 번째")
     }*/
 
-    /*Row(
-        verticalAlignment = Alignment.Bottom,
-        modifier = Modifier
-            .height(40.dp)
-            .width(200.dp)
+    Column(
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.End,
+        modifier = Modifier.size(100.dp)
     ) {
         Text(
-            text = "첫 번째!",
-            modifier = Modifier.align(Alignment.Top)
-                .weight(3f)
+            text = "첫 번째",
+            modifier = Modifier.align(Alignment.CenterHorizontally)
         )
+        Text(text = "두 번째")
         Text(
-            text = "두 번째!",
-            modifier = Modifier.weight(1f)
-        )
-        Text(
-            text = "세 번째!",
-            modifier = Modifier.weight(3f)
-        )
-    }*/
-
-    Row(
-        verticalAlignment = Alignment.Bottom,
-        modifier = Modifier
-            .height(40.dp)
-            .width(200.dp)
-    ) {
-        Text(
-            text = "첫 번째!",
-            textAlign = TextAlign.End,
-            modifier = Modifier.align(Alignment.Top)
-                .weight(3f)
-                .background(Color.Magenta)
-        )
-        Icon(
-            imageVector = Icons.Filled.Add,
-            contentDescription = "추가",
-            modifier = Modifier
-                .weight(1f)
-                .background(Color.Cyan)
-        )
-        Text(
-            text = "세 번째!",
-            textAlign = TextAlign.Center,
-            modifier = Modifier
-                .weight(3f)
-                .background(Color.Blue)
+            text = "세 번째",
+            modifier = Modifier.align(Alignment.Start)
         )
     }
 }
@@ -138,6 +97,6 @@ fun RowEx() {
 @Composable
 fun GreetingPreview() {
     FastCampusComposeTheme {
-        RowEx()
+        ColumnEx()
     }
 }
