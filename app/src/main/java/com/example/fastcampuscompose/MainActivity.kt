@@ -6,7 +6,9 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -20,6 +22,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
@@ -32,61 +35,29 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             FastCampusComposeTheme {
-                SurfaceEx("Android")
+                BoxEx()
             }
         }
     }
 }
 
 @Composable
-fun SurfaceEx(name: String) {
-    /*Surface(
-        modifier = Modifier.padding(5.dp)
-    ) {
-        Text(
-            text = "Hello $name!",
-            modifier = Modifier.padding(8.dp)
-        )
+fun BoxEx() {
+    /*Box(modifier = Modifier.size(100.dp)) {
+        Text(text = "Hello World", modifier = Modifier.align(Alignment.BottomEnd))
+        Text(text = "Jetpack", modifier = Modifier.align(Alignment.CenterEnd))
+        Text(text = "Compose", modifier = Modifier.align(Alignment.TopStart))
     }*/
 
-    /*Surface(
-        modifier = Modifier.padding(5.dp),
-        shadowElevation = 5.dp
-    ) {
-        Text(
-            text = "Hello $name!",
-            modifier = Modifier.padding(8.dp)
-        )
+    /*Box(modifier = Modifier.size(100.dp)) {
+        Box(modifier = Modifier.size(70.dp).background(Color.Cyan).align(Alignment.CenterStart))
+        Box(modifier = Modifier.size(70.dp).background(Color.Yellow).align(Alignment.BottomEnd))
     }*/
 
-    /*Surface(
-        modifier = Modifier.padding(5.dp),
-        shadowElevation = 5.dp,
-        border = BorderStroke(
-            width = 2.dp,
-            color = Color.Magenta
-        )
-    ) {
-        Text(
-            text = "Hello $name!",
-            modifier = Modifier.padding(8.dp)
-        )
-    }*/
-
-    Surface(
-        modifier = Modifier.padding(5.dp),
-        shadowElevation = 5.dp,
-        border = BorderStroke(
-            width = 2.dp,
-            color = Color.Magenta
-        ),
-        shape = CircleShape,
-        color = MaterialTheme.colorScheme.error
-    ) {
-        Text(
-            text = "Hello $name!",
-            modifier = Modifier.padding(8.dp)
-        )
+    Box {
+        Box(modifier = Modifier.fillMaxSize().background(Color.Cyan).align(Alignment.CenterStart))
+        Box(modifier = Modifier.matchParentSize().background(Color.Green).align(Alignment.CenterStart))
+        Box(modifier = Modifier.size(70.dp).background(Color.Yellow).align(Alignment.Center))
     }
 }
 
@@ -94,6 +65,6 @@ fun SurfaceEx(name: String) {
 @Composable
 fun GreetingPreview() {
     FastCampusComposeTheme {
-        SurfaceEx("Android")
+        BoxEx()
     }
 }
