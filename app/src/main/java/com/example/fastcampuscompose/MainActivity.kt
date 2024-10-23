@@ -6,13 +6,20 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Send
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Send
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -37,77 +44,187 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             FastCampusComposeTheme {
-                    ButtonExample(onButtonClicked = {
-                        Toast.makeText(this, "Send clicked", Toast.LENGTH_SHORT).show()
-                    })
+                ModifierEx()
             }
         }
     }
 }
 
 @Composable
-fun ButtonExample(onButtonClicked: () -> Unit) {
-    /*Button(onClick = onButtonClicked) {
-        Text(text = "Send")
-    }*/
-
-    /*Button(onClick = onButtonClicked) {
+fun ModifierEx() {
+    /*Button(onClick = {}) {
         Icon(
-            imageVector = Icons.AutoMirrored.Filled.Send,
+            imageVector = Icons.Filled.Search,
             contentDescription = null
         )
-        Text(text = "Send")
-    }*/
-
-    /*Button(
-        onClick = onButtonClicked,
-        enabled = false
-    ) {
-        Icon(
-            imageVector = Icons.AutoMirrored.Filled.Send,
-            contentDescription = null
+        Spacer(
+            modifier = Modifier.size(ButtonDefaults.IconSpacing)
         )
-        Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
-        Text(text = "Send")
+        Text("Search")
     }*/
 
     /*Button(
-        onClick = onButtonClicked,
-        border = BorderStroke(10.dp, Color.Magenta)
+        onClick = {},
+        modifier = Modifier.fillMaxSize()
     ) {
         Icon(
-            imageVector = Icons.AutoMirrored.Filled.Send,
+            imageVector = Icons.Filled.Search,
             contentDescription = null
         )
-        Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
-        Text(text = "Send")
+        Spacer(
+            modifier = Modifier.size(ButtonDefaults.IconSpacing)
+        )
+        Text("Search")
     }*/
 
     /*Button(
-        onClick = onButtonClicked,
-        border = BorderStroke(10.dp, Color.Magenta),
-        shape = CircleShape
+        onClick = {},
+        modifier = Modifier.height(100.dp)
     ) {
         Icon(
-            imageVector = Icons.AutoMirrored.Filled.Send,
+            imageVector = Icons.Filled.Search,
             contentDescription = null
         )
-        Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
-        Text(text = "Send")
+        Spacer(
+            modifier = Modifier.size(ButtonDefaults.IconSpacing)
+        )
+        Text("Search")
+    }*/
+
+    /*Button(
+        onClick = {},
+        modifier = Modifier
+            .height(100.dp)
+            .width(200.dp)
+    ) {
+        Icon(
+            imageVector = Icons.Filled.Search,
+            contentDescription = null
+        )
+        Spacer(
+            modifier = Modifier.size(ButtonDefaults.IconSpacing)
+        )
+        Text("Search")
+    }*/
+
+    /*Button(
+        onClick = {},
+        modifier = Modifier.size(200.dp)
+    ) {
+        Icon(
+            imageVector = Icons.Filled.Search,
+            contentDescription = null
+        )
+        Spacer(
+            modifier = Modifier.size(ButtonDefaults.IconSpacing)
+        )
+        Text("Search")
+    }*/
+
+    /*Button(
+        onClick = {},
+        modifier = Modifier
+            .size(200.dp)
+            .background(Color.Red) // 버튼을 둘러싼 공간의 색상을 변경
+    ) {
+        Icon(
+            imageVector = Icons.Filled.Search,
+            contentDescription = null
+        )
+        Spacer(
+            modifier = Modifier.size(ButtonDefaults.IconSpacing)
+        )
+        Text("Search")
+    }*/
+
+    /*Button(
+        onClick = {},
+        modifier = Modifier.size(200.dp),
+        colors = ButtonDefaults.buttonColors(
+            containerColor = Color.Magenta, // 버튼 배경색이 변경
+            contentColor = Color.Cyan // 버튼 속 콘텐츠의 색이 변경
+        )
+    ) {
+        Icon(
+            imageVector = Icons.Filled.Search,
+            contentDescription = null
+        )
+        Spacer(
+            modifier = Modifier.size(ButtonDefaults.IconSpacing)
+        )
+        Text("Search")
+    }*/
+
+    /*Button(
+        onClick = {},
+        modifier = Modifier
+            .size(200.dp)
+            .padding(10.dp),
+        colors = ButtonDefaults.buttonColors(
+            containerColor = Color.Magenta,
+            contentColor = Color.Cyan
+        )
+    ) {
+        Icon(
+            imageVector = Icons.Filled.Search,
+            contentDescription = null
+        )
+        Spacer(
+            modifier = Modifier.size(ButtonDefaults.IconSpacing)
+        )
+        Text("Search")
+    }*/
+
+    /*Button(
+        onClick = {},
+        enabled = false,
+        modifier = Modifier
+            .size(200.dp)
+            .padding(10.dp),
+        colors = ButtonDefaults.buttonColors(
+            containerColor = Color.Magenta,
+            contentColor = Color.Cyan
+        )
+    ) {
+        Icon(
+            imageVector = Icons.Filled.Search,
+            contentDescription = null
+        )
+        Spacer(
+            modifier = Modifier.size(ButtonDefaults.IconSpacing)
+        )
+        Text(
+            text = "Search",
+            modifier = Modifier.clickable {}
+        )
     }*/
 
     Button(
-        onClick = onButtonClicked,
-        border = BorderStroke(10.dp, Color.Magenta),
-        shape = CircleShape,
-        contentPadding = PaddingValues(20.dp)
+        onClick = {},
+        modifier = Modifier
+            .size(200.dp)
+            .padding(10.dp),
+        colors = ButtonDefaults.buttonColors(
+            containerColor = Color.Magenta,
+            contentColor = Color.Cyan
+        )
     ) {
         Icon(
-            imageVector = Icons.AutoMirrored.Filled.Send,
-            contentDescription = null
+            imageVector = Icons.Filled.Search,
+            contentDescription = null,
+            modifier = Modifier.background(Color.Blue)
         )
-        Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
-        Text(text = "Send")
+        Spacer(
+            modifier = Modifier
+                .size(ButtonDefaults.IconSpacing)
+                .background(Color.Blue)
+        )
+        Text(
+            text = "Search",
+            modifier = Modifier
+                .offset(x = 20.dp, y = 10.dp)
+                .background(Color.Blue)
+        )
     }
 }
 
@@ -115,6 +232,6 @@ fun ButtonExample(onButtonClicked: () -> Unit) {
 @Composable
 fun GreetingPreview() {
     FastCampusComposeTheme {
-        ButtonExample{}
+        ModifierEx()
     }
 }
