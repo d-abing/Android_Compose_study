@@ -1,10 +1,22 @@
 package com.example.fastcampuscompose
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.Send
+import androidx.compose.material.icons.filled.Send
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -25,77 +37,84 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             FastCampusComposeTheme {
-                    Greeting("Android")
+                    ButtonExample(onButtonClicked = {
+                        Toast.makeText(this, "Send clicked", Toast.LENGTH_SHORT).show()
+                    })
             }
         }
     }
 }
 
 @Composable
-fun Greeting(name: String) {
-    // Text(text = "Hello $name")
+fun ButtonExample(onButtonClicked: () -> Unit) {
+    /*Button(onClick = onButtonClicked) {
+        Text(text = "Send")
+    }*/
 
-    // Text(color = Color.Red, text = "Hello $name")
+    /*Button(onClick = onButtonClicked) {
+        Icon(
+            imageVector = Icons.AutoMirrored.Filled.Send,
+            contentDescription = null
+        )
+        Text(text = "Send")
+    }*/
 
-    // Text(color = Color(0xffff9944), text = "Hello $name")
+    /*Button(
+        onClick = onButtonClicked,
+        enabled = false
+    ) {
+        Icon(
+            imageVector = Icons.AutoMirrored.Filled.Send,
+            contentDescription = null
+        )
+        Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
+        Text(text = "Send")
+    }*/
 
-    // Text(color = Color.Red, text = "Hello $name", fontSize = 30.sp)
+    /*Button(
+        onClick = onButtonClicked,
+        border = BorderStroke(10.dp, Color.Magenta)
+    ) {
+        Icon(
+            imageVector = Icons.AutoMirrored.Filled.Send,
+            contentDescription = null
+        )
+        Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
+        Text(text = "Send")
+    }*/
 
-    // Text(color = Color.Red, text = "Hello $name", fontSize = 30.sp, fontWeight = FontWeight.Bold)
+    /*Button(
+        onClick = onButtonClicked,
+        border = BorderStroke(10.dp, Color.Magenta),
+        shape = CircleShape
+    ) {
+        Icon(
+            imageVector = Icons.AutoMirrored.Filled.Send,
+            contentDescription = null
+        )
+        Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
+        Text(text = "Send")
+    }*/
 
-    /*Text(
-        color = Color.Red,
-        text = "Hello $name",
-        fontSize = 30.sp,
-        fontWeight = FontWeight.Bold,
-        fontFamily = FontFamily.Cursive
-    )*/
-
-    /*Text(
-        color = Color.Red,
-        text = "Hello $name",
-        fontSize = 30.sp,
-        fontWeight = FontWeight.Bold,
-        fontFamily = FontFamily.Cursive,
-        letterSpacing = 2.sp
-    )*/
-
-    /*Text(
-        color = Color.Red,
-        text = "Hello $name\nHello $name\nHello $name",
-        fontSize = 30.sp,
-        fontWeight = FontWeight.Bold,
-        fontFamily = FontFamily.Cursive,
-        maxLines = 2
-    )*/
-
-    /*Text(
-        color = Color.Red,
-        text = "Hello $name\nHello $name\nHello $name",
-        fontSize = 30.sp,
-        fontWeight = FontWeight.Bold,
-        fontFamily = FontFamily.Cursive,
-        maxLines = 2,
-        textDecoration = TextDecoration.Underline
-    )*/
-
-    Text(
-        modifier = Modifier.width(300.dp),
-        color = Color.Red,
-        text = "Hello $name\nHello $name\nHello $name",
-        fontSize = 30.sp,
-        fontWeight = FontWeight.Bold,
-        fontFamily = FontFamily.Cursive,
-        maxLines = 2,
-        textDecoration = TextDecoration.Underline,
-        textAlign = TextAlign.Center
-    )
+    Button(
+        onClick = onButtonClicked,
+        border = BorderStroke(10.dp, Color.Magenta),
+        shape = CircleShape,
+        contentPadding = PaddingValues(20.dp)
+    ) {
+        Icon(
+            imageVector = Icons.AutoMirrored.Filled.Send,
+            contentDescription = null
+        )
+        Spacer(modifier = Modifier.size(ButtonDefaults.IconSpacing))
+        Text(text = "Send")
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     FastCampusComposeTheme {
-        Greeting("Android")
+        ButtonExample{}
     }
 }
