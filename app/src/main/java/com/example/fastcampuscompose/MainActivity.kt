@@ -3,155 +3,153 @@ package com.example.fastcampuscompose
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.clickable
+import androidx.annotation.DrawableRes
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.AccountBox
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Search
-import androidx.compose.material.icons.filled.Settings
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Checkbox
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
+import androidx.compose.material3.CardElevation
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.ColorPainter
-import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
 import com.example.fastcampuscompose.ui.theme.FastCampusComposeTheme
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
             FastCampusComposeTheme {
-                SlotEx()
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    CatalogEx(items)
+                }
             }
         }
     }
 }
 
-/*@Composable
-fun CheckboxWithText(checked: MutableState<Boolean>, text: String) {
-    Row(verticalAlignment = Alignment.CenterVertically) {
-        Checkbox(checked = checked.value, onCheckedChange = {checked.value = it})
-        Text(
-            text = text,
-            modifier = Modifier.clickable { checked.value = !checked.value }
-        )
-    }
-}*/
-
-/*@Composable
-fun CheckboxWithSlot(checked: MutableState<Boolean>, content: @Composable () -> Unit) {
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.clickable { checked.value = !checked.value }
-    ) {
-        Checkbox(checked = checked.value, onCheckedChange = {checked.value = it})
-        content()
-    }
-}*/
-
-/*@Composable
-fun CheckboxWithSlot(
-    checked: MutableState<Boolean>,
-    content: @Composable RowScope.() -> Unit
-) {
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.clickable { checked.value = !checked.value }
-    ) {
-        Checkbox(checked = checked.value, onCheckedChange = { checked.value = it })
-        content()
-    }
-}*/
-
 @Composable
-fun CheckboxWithSlot(
-    checked: Boolean,
-    onCheckedChanged: () -> Unit,
-    content: @Composable RowScope.() -> Unit
-) {
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.clickable { onCheckedChanged() }
+fun Item(itemData: ItemData) {
+    Card(
+        elevation =  CardDefaults.cardElevation(8.dp),
+        modifier = Modifier.padding(16.dp)
     ) {
-        Checkbox(checked = checked, onCheckedChange = { onCheckedChanged() })
-        content()
-    }
-}
-
-@Composable
-fun SlotEx() {
-    var checked1 by remember { mutableStateOf(false) }
-    var checked2 by remember { mutableStateOf(false) }
-
-    Column {
-        /*Row(verticalAlignment = Alignment.CenterVertically) {
-            Checkbox(checked = checked1.value, onCheckedChange = {checked1.value = it})
+        Column(
+            modifier = Modifier.padding(8.dp)
+        ) {
+            Image(
+                painter = painterResource(id = itemData.imageId),
+                contentDescription = itemData.title
+            )
+            Spacer(modifier = Modifier.size(8.dp))
             Text(
-                text = "텍스트 1",
-                modifier = Modifier.clickable { checked1.value = !checked1.value }
+                text = itemData.title,
+                style = MaterialTheme.typography.headlineLarge
+            )
+            Spacer(modifier = Modifier.size(8.dp))
+            Text(
+                text = itemData.description,
+                style = MaterialTheme.typography.bodyMedium
             )
         }
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Checkbox(checked = checked2.value, onCheckedChange = {checked2.value = it})
-            Text(
-                text = "텍스트 2",
-                modifier = Modifier.clickable { checked2.value = !checked2.value }
-            )
-        }*/
-
-        CheckboxWithSlot(
-            checked = checked1,
-            onCheckedChanged = { checked1 = !checked1 }
-        ) {
-            Text("텍스트 1")
-        }
-        CheckboxWithSlot(
-            checked = checked2,
-            onCheckedChanged = { checked2 = !checked2 }
-        ) {
-            Text("텍스트 2")
-        }
     }
-
 }
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun ItemPreview() {
     FastCampusComposeTheme {
-        SlotEx()
+        Item(
+            ItemData(
+                imageId = R.drawable.a1,
+                title = "해변 놀이 공원",
+                description = "해변 놀이 공원 설명입니다. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
+            )
+        )
     }
 }
+
+@Composable
+fun CatalogEx(itemList: List<ItemData>) {
+    LazyColumn {
+        items(itemList) { item ->
+            Item(itemData = item)
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun DefaultPreview() {
+    FastCampusComposeTheme {
+        CatalogEx(items)
+    }
+}
+
+data class ItemData(
+    @DrawableRes val imageId: Int,
+    val title: String,
+    val description: String,
+)
+
+val items = listOf(
+    ItemData(
+        imageId = R.drawable.a1,
+        title = "해변 놀이 공원",
+        description = "해변 놀이 공원 설명입니다. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
+    ),
+    ItemData(
+        imageId = R.drawable.a2,
+        title = "캐년",
+        description = "미국의 캐년입니다. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
+    ),
+    ItemData(
+        imageId = R.drawable.a3,
+        title = "워터월드",
+        description = "워터월드입니다. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
+    ),
+    ItemData(
+        imageId = R.drawable.a4,
+        title = "미국의 캐년",
+        description = "미국의 캐년입니다. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
+    ),
+    ItemData(
+        imageId = R.drawable.a5,
+        title = "라스베가스",
+        description = "라스베가스입니다. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
+    ),
+    ItemData(
+        imageId = R.drawable.a6,
+        title = "호르슈 밴드",
+        description = "호르슈 밴드입니다. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
+    ),
+    ItemData(
+        imageId = R.drawable.a7,
+        title = "미국의 길",
+        description = "미국의 길입니다. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
+    ),
+    ItemData(
+        imageId = R.drawable.a8,
+        title = "엔텔로프 캐년",
+        description = "엔텔로프 캐년입니다. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
+    ),
+    ItemData(
+        imageId = R.drawable.a9,
+        title = "그랜드 캐년",
+        description = "그랜드 캐년입니다. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "
+    ),
+)
