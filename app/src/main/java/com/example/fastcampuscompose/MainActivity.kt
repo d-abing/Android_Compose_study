@@ -16,8 +16,10 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -40,57 +42,40 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             FastCampusComposeTheme {
-                CheckBoxEx()
+                TextFieldEx()
             }
         }
     }
 }
 
 @Composable
-fun CheckBoxEx() {
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.padding(end = 12.dp)
-    ) {
+fun TextFieldEx() {
+    var name by remember { mutableStateOf("Tom") }
 
-        /*Checkbox(checked = false, onCheckedChange = {})*/
+    Column(modifier = Modifier.padding(16.dp)) {
 
-        /*var checked = false
-        Checkbox(
-            checked = checked,
-            onCheckedChange = {
-                checked = !checked
-            }
+        /*TextField(value = "Tom", onValueChange = {})*/
+
+        /*TextField(value = name, onValueChange = {name = it})*/
+
+        /*TextField(
+            value = name,
+            label = {
+                Text("이름")
+            },
+            onValueChange = {name = it}
         )*/
 
-        /*val checked = remember { mutableStateOf(false) }
-        Checkbox(
-            checked = checked.value,
-            onCheckedChange = {
-                checked.value = !checked.value
-            }
-        )*/
-
-        /*var checked by remember { mutableStateOf(false) }
-        Checkbox(
-            checked = checked,
-            onCheckedChange = {
-                checked = !checked
-            }
-        )*/
-
-        val (getter, setter) = remember { mutableStateOf(false) }
-        Checkbox(
-            checked = getter,
-            onCheckedChange = setter
+        OutlinedTextField(
+            value = name,
+            label = {
+                Text("이름")
+            },
+            onValueChange = {name = it}
         )
+        Spacer(modifier = Modifier.size(8.dp))
 
-        Text(
-            text = "프로그래머입니까?",
-            modifier = Modifier.clickable {
-                setter(!getter)
-            }
-        )
+        Text(text = "Hello $name")
     }
 }
 
@@ -98,6 +83,6 @@ fun CheckBoxEx() {
 @Composable
 fun GreetingPreview() {
     FastCampusComposeTheme {
-        CheckBoxEx()
+        TextFieldEx()
     }
 }
