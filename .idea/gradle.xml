@@ -9,7 +9,21 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/chapter4-10" />
+            <option value="$PROJECT_DIR$/chapter4-11" />
+            <option value="$PROJECT_DIR$/chapter4-12" />
+            <option value="$PROJECT_DIR$/chapter4-13" />
+            <option value="$PROJECT_DIR$/chapter4-14" />
+            <option value="$PROJECT_DIR$/chapter4-15" />
+            <option value="$PROJECT_DIR$/chapter4-17" />
+            <option value="$PROJECT_DIR$/chapter4-3" />
+            <option value="$PROJECT_DIR$/chapter4-4" />
+            <option value="$PROJECT_DIR$/chapter4-5" />
+            <option value="$PROJECT_DIR$/chapter4-6" />
+            <option value="$PROJECT_DIR$/chapter4-7" />
+            <option value="$PROJECT_DIR$/chapter4-8" />
+            <option value="$PROJECT_DIR$/chapter4-9" />
+            <option value="$PROJECT_DIR$/chaptert4-18" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />
